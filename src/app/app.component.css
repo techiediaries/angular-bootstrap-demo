@@ -1,0 +1,9 @@
+.my-container {
+    margin-top: 70px;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+  }
