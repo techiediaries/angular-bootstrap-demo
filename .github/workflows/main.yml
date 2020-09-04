@@ -13,7 +13,7 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm install -g @angular/cli > /dev/null
-    - run: ng build --prod --output-path=dist
+    - run: ng build --prod --output-path=dist --base-href "https://techiediaries.github.io/angular-bootstrap-demo/" 
     - name: Publish generated content to GitHub Pages
       uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
       with:
