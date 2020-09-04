@@ -1,0 +1,24 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1 #this will install Node and npm on Ubuntu
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm install -g @angular/cli > /dev/null
+    - run: ng build --prod
+    - name: All things angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions
+      with:
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: staging # The build environment for the app. please look configurations in your angular.json
+        base_href: /angular-bootstrap-demo/ # make sure this corresponds to https://<your_username>.github.io/<base_href>/
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: dist/angular-bootstrap-demo # The folder where your project is supposed to be after running ng build by the action.
